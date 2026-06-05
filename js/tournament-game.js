@@ -125,6 +125,7 @@ if (winnerModal) {
       winnerModal.classList.remove("show");
     }
   });
+  
   const modalContent = winnerModal.querySelector(".modal-content");
   if (modalContent) {
     modalContent.addEventListener("click", (event) => {
