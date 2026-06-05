@@ -13,16 +13,17 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/game-style.css" />
     <link rel="stylesheet" href="css/game-tournament.css" />
+    <link rel="stylesheet" href="css/game-roulette.css" />
 </head>
 <body>
     <header>
       <div id="header">
         <div id="title">오늘 뭐 먹지?</div>
         <div id="nav">
-          <div>룰렛 게임</div>
-          <div>토너먼트 게임</div>
-          <div>음식 맞추기 게임</div>
-          <div>팀 소개</div>
+          <div data-game="roulette">룰렛 게임</div>
+          <div data-game="tournament">토너먼트 게임</div>
+          <div data-game="guess">음식 맞추기 게임</div>
+          <div data-game="team">팀 소개</div>
         </div>
       </div>
     </header>
@@ -30,8 +31,18 @@
     <main>
     <section id="roulette-game" class="game-panel">
         <div class="game-content">
-            <h2 class="title">룰렛 게임</h2>
-            <p class="round-info">준비 중입니다.</p>
+            <h2 class="roulette-heading">🎰 룰렛 게임</h2>
+            <p class="roulette-desc">룰렛을 돌려 오늘의 메뉴를 정해 보세요!</p>
+
+            <div class="roulette-board">
+                <div class="roulette-pointer" aria-hidden="true"></div>
+                <div id="roulette-wheel" class="roulette-wheel"></div>
+                <div class="roulette-center-cap" aria-hidden="true">🍽️</div>
+            </div>
+
+            <p id="roulette-result" class="roulette-result">버튼을 눌러 룰렛을 돌려보세요</p>
+            <button type="button" id="roulette-spin-btn" class="roulette-spin-btn">룰렛 돌리기</button>
+            <a id="roulette-form-link" class="roulette-form-link hidden" href="#">레시피 선택하기</a>
         </div>
     </section>
 
@@ -42,18 +53,14 @@
 
             <div class="match-container">
                 <div class="food-card" id="left-card">
-                    <div class="image-placeholder" id="left-img">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
-                    </div>
+                    <div class="image-placeholder" id="left-img"></div>
                     <div class="food-name" id="left-name">음식 1</div>
                 </div>
 
                 <div class="vs-text">VS</div>
 
                 <div class="food-card" id="right-card">
-                    <div class="image-placeholder" id="right-img">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
-                    </div>
+                    <div class="image-placeholder" id="right-img"></div>
                     <div class="food-name" id="right-name">음식 2</div>
                 </div>
             </div>
@@ -102,9 +109,7 @@
             <p class="modal-sub">오늘의 우승 메뉴</p>
 
             <div class="winner-display">
-                <div class="image-placeholder" id="winner-img">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
-                </div>
+                <div class="image-placeholder" id="winner-img"></div>
                 <div class="food-name" id="winner-name">우승 음식</div>
             </div>
 
@@ -115,6 +120,7 @@
     <script src="js/main.js"></script>
     <script src="js/game-nav.js"></script>
     <script src="js/tournament-game.js"></script>
+    <script src="js/roulette-game.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>

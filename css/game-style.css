@@ -14,6 +14,10 @@
 /*-------------------------------------*/
 /* 게임 페이지 전용 (헤더·본문 레이아웃은 style.css) */
 .game-panel {
+    display: none;
+}
+
+.game-panel.is-active {
     display: block;
 }
 
@@ -117,15 +121,15 @@
 
 .recipe-redirect-btn {
     width: 50%;
-    padding: 6px;
-
+    padding: 10px 16px;
+    border: none;
     border-radius: 10px;
-    border-color: var(--point-color-3);
     background-color: var(--point-color-3);
-
     color: var(--white-text-color);
+    font-family: inherit;
     font-weight: 700;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .game-food-image {

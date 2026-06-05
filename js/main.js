@@ -19,16 +19,25 @@ if (title) {
 }
 
 const GAME_PAGE = "game.html";
-const gameCardIds = ["foodGame", "rouletteGame", "tournamentGame"];
 
-function goToGamePage() {
-  window.location.href = GAME_PAGE;
+const gameCardLinks = {
+  foodGame: "guess",
+  rouletteGame: "roulette",
+  tournamentGame: "tournament",
+};
+
+function goToGamePage(gameKey) {
+  const url = new URL(GAME_PAGE, window.location.href);
+  if (gameKey) {
+    url.searchParams.set("game", gameKey);
+  }
+  window.location.href = url.pathname + url.search;
 }
 
-gameCardIds.forEach((id) => {
+Object.entries(gameCardLinks).forEach(([id, gameKey]) => {
   const card = document.getElementById(id);
   if (!card) return;
-  card.addEventListener("click", goToGamePage);
+  card.addEventListener("click", () => goToGamePage(gameKey));
 });
 
 const TEAM_PAGE = "team.html";
@@ -36,10 +45,11 @@ const isGamePage = Boolean(document.getElementById("tournament-game"));
 const nav = document.getElementById("nav");
 
 if (nav && !isGamePage) {
+  const navGameKeys = ["roulette", "tournament", "guess"];
   const navItems = Array.from(nav.children);
 
-  navItems.slice(0, 3).forEach((item) => {
-    item.addEventListener("click", goToGamePage);
+  navItems.slice(0, 3).forEach((item, index) => {
+    item.addEventListener("click", () => goToGamePage(navGameKeys[index]));
   });
 
   if (navItems[3]) {

@@ -185,13 +185,18 @@
 
 <script>
   var params = new URLSearchParams(window.location.search);
-  var foodKey = params.get('food') || 'KIMCHI_RICE';
-  var food = foodList[foodKey];
+  var foodKey = params.get('food');
+  var menuParam = params.get('menu');
 
-  if (!food) {
-    foodKey = 'KIMCHI_RICE';
-    food = foodList[foodKey];
+  if (!foodKey && menuParam && menuKeyToFoodKey[menuParam]) {
+    foodKey = menuKeyToFoodKey[menuParam];
   }
+
+  if (!foodKey || !foodList[foodKey]) {
+    foodKey = 'KIMCHI_RICE';
+  }
+
+  var food = foodList[foodKey];
 
   function renderPage() {
     document.title = '오늘 뭐 먹지? - ' + food.name;

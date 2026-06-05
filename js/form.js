@@ -182,6 +182,7 @@ const sourceLabels = {
   roulette: "룰렛 돌리기",
   tournament: "토너먼트",
   fortune: "포춘쿠키",
+  guess: "음식 맞추기",
 };
 
 if (!form) {
@@ -249,7 +250,12 @@ if (!form) {
 
   function goToRecipe(menuKey) {
     const menu = menuForms[menuKey];
+    const foodKey = menuKeyToFoodKey[menuKey];
     const recipeParams = new URLSearchParams();
+
+    if (foodKey) {
+      recipeParams.set("food", foodKey);
+    }
 
     recipeParams.set("menu", menuKey);
 

@@ -3,35 +3,52 @@ const gameNav = document.getElementById("tournament-game")
   : null;
 
 const gamePanels = {
-  "룰렛 게임": document.getElementById("roulette-game"),
-  "토너먼트 게임": document.getElementById("tournament-game"),
-  "음식 맞추기 게임": document.getElementById("guess-game"),
+  roulette: document.getElementById("roulette-game"),
+  tournament: document.getElementById("tournament-game"),
+  guess: document.getElementById("guess-game"),
 };
 
-const DEFAULT_GAME = "토너먼트 게임";
+const gameLabels = {
+  roulette: "룰렛 게임",
+  tournament: "토너먼트 게임",
+  guess: "음식 맞추기 게임",
+};
 
-function showGame(label) {
-  Object.entries(gamePanels).forEach(([name, panel]) => {
+const DEFAULT_GAME = "tournament";
+
+function showGame(gameKey) {
+  const activeKey = gamePanels[gameKey] ? gameKey : DEFAULT_GAME;
+
+  Object.entries(gamePanels).forEach(([key, panel]) => {
     if (!panel) return;
-    panel.style.display = name === label ? "block" : "none";
+    panel.classList.toggle("is-active", key === activeKey);
   });
+}
+
+function getGameKeyFromUrl() {
+  const gameParam = new URLSearchParams(window.location.search).get("game");
+  return gamePanels[gameParam] ? gameParam : DEFAULT_GAME;
 }
 
 if (gameNav) {
   Array.from(gameNav.children).forEach((item) => {
     item.addEventListener("click", () => {
-      const label = item.innerText.trim();
+      const gameKey = item.dataset.game;
 
-      if (label === "팀 소개") {
+      if (gameKey === "team") {
         window.location.href = "team.html";
         return;
       }
 
-      if (gamePanels[label]) {
-        showGame(label);
+      if (gamePanels[gameKey]) {
+        showGame(gameKey);
+
+        const nextUrl = new URL(window.location.href);
+        nextUrl.searchParams.set("game", gameKey);
+        window.history.replaceState(null, "", nextUrl);
       }
     });
   });
 }
 
-showGame(DEFAULT_GAME);
+showGame(getGameKeyFromUrl());

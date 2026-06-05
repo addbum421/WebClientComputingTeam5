@@ -49,13 +49,6 @@
   background-position: center;
 }
 
-.image-placeholder svg {
-  width: 100%;
-  height: 100%;
-  stroke: #ccc;
-  stroke-width: 2;
-}
-
 .food-name {
   margin-top: 12px;
   font-size: 20px;

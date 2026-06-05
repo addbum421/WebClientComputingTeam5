@@ -3,6 +3,17 @@
 //  새 음식 추가 시 여기에만 추가하면 됨!
 // =============================================
 
+const menuKeyToFoodKey = {
+  tteokbokki: "TTEOKBOKKI",
+  kimchiFriedRice: "KIMCHI_RICE",
+  dakbokkeumtang: "DAK_BOKKEUM",
+  shabuShabu: "SHABU",
+  doenjangStew: "DOENJANG",
+  kimchiStew: "KIMCHI_JJIGAE",
+  seaweedSoup: "MIYEOK",
+  aglioOlio: "AGLIO_OLIO",
+};
+
 const foodList = {
 
   TTEOKBOKKI: {
