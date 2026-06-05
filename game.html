@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘 뭐 먹지? - 음식 토너먼트</title>
-    <link rel="stylesheet" href="gametostyle.css">
+    <title>오늘 뭐 먹지? - 게임</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/game-style.css" />
+    <link rel="stylesheet" href="css/game-tournament.css" />
 </head>
 <body>
-
-    <div class="container">
-        
-        <header>
-      <div class="header-bar">
-        <div class="logo">오늘 뭐 먹지?</div>
-        <div class="game-tag">
+    <header>
+      <div id="header">
+        <div id="title">오늘 뭐 먹지?</div>
+        <div id="nav">
           <div>룰렛 게임</div>
           <div>토너먼트 게임</div>
           <div>음식 맞추기 게임</div>
@@ -22,7 +27,16 @@
       </div>
     </header>
 
-        <main class="game-content">
+    <main>
+    <section id="roulette-game" class="game-panel">
+        <div class="game-content">
+            <h2 class="title">룰렛 게임</h2>
+            <p class="round-info">준비 중입니다.</p>
+        </div>
+    </section>
+
+    <section id="tournament-game" class="game-panel">
+        <div class="game-content">
             <h2 class="title" id="tournament-title">음식 토너먼트</h2>
             <p class="round-info" id="round-info">1/4</p>
 
@@ -43,14 +57,50 @@
                     <div class="food-name" id="right-name">음식 2</div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
+
+    <section id="guess-game" class="game-panel">
+        <section class="game-content" id="game-main">
+            <div class="game-title">음식 맞추기</div>
+            <div class="game-grid-container">
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+                <div class="game-grid-element"></div>
+            </div>
+            <ol class="game-select">
+                <li class="game-select-opt">PlaceHolder</li>
+                <li class="game-select-opt">PlaceHolder</li>
+                <li class="game-select-opt">PlaceHolder</li>
+                <li class="game-select-opt">PlaceHolder</li>
+            </ol>
+        </section>
+
+        <section class="game-content hidden" id="game-end">
+            <div class="game-title">정답 공개</div>
+            <div><img class="game-food-image" src="./assets/image/game/placeholder.png" alt="food_image"></div>
+            <div class="game-result"><span class="game-result-succ">(성공! or 실패!)</span> <span> </span> <span class="game-result-menu">메뉴명</span></div>
+            <button class="recipe-redirect-btn">레시피 보러가기</button>
+        </section>
+    </section>
+    </main>
 
     <div class="modal-overlay" id="winner-modal">
         <div class="modal-content">
             <h2 class="modal-title">축하합니다! 🏆</h2>
             <p class="modal-sub">오늘의 우승 메뉴</p>
-            
+
             <div class="winner-display">
                 <div class="image-placeholder" id="winner-img">
                     <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
@@ -62,47 +112,9 @@
         </div>
     </div>
 
-    <script src="gametoscript.js"></script>
-
-    <link rel="stylesheet" href="css/game-style.css">
-    <title>게임</title>
-</head>
-<body>
-    <header class="page-header">PlaceHolder</header>
-    
-    <section class="game-content" id="game-main">
-        <div class="game-title">음식 맞추기</div>
-        <div class="game-grid-container">
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-            <div class="game-grid-element"></div>
-        </div>
-        <ol class="game-select">
-            <li class="game-select-opt">PlaceHolder</div>
-            <li class="game-select-opt">PlaceHolder</div>
-            <li class="game-select-opt">PlaceHolder</div>
-            <li class="game-select-opt">PlaceHolder</div>
-        </ol>
-    </section>
-
-    <section class="game-content hidden" id="game-end">
-        <div class="game-title">정답 공개</div>
-        <div><img class="game-food-image" src="./assets/image/game/placeholder.png" alt="food_image"></div>
-        <div class="game-result"><span class="game-result-succ">(성공! or 실패!)</span> <span> </span> <span class="game-result-menu">메뉴명</span></div>
-        <button class="recipe-redirect-btn">레시피 보러가기</button>
-    </section>
-
+    <script src="js/main.js"></script>
+    <script src="js/game-nav.js"></script>
+    <script src="js/tournament-game.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>

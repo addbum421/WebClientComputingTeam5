@@ -4,42 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>오늘 뭐 먹지? - 레시피</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/recipe.css">
 </head>
 <body>
 
-<!-- ── HEADER ── -->
-<header class="site-header">
-  <div class="site-header-inner">
-    <a class="logo" href="index.html">
-      <span class="logo-icon">🍚</span>
-      오늘 뭐 먹지?
-    </a>
-    <nav>
-      <a href="index.html">홈</a>
-      <a href="game.html">게임</a>
-      <a href="form.html">추천받기</a>
-      <a href="recipe.html">레시피</a>
-      <a href="team.html">팀 소개</a>
-    </nav>
+<header>
+  <div id="header">
+    <div id="title">오늘 뭐 먹지?</div>
+    <div id="nav">
+      <div>룰렛 게임</div>
+      <div>토너먼트 게임</div>
+      <div>음식 맞추기 게임</div>
+      <div>팀 소개</div>
+    </div>
   </div>
 </header>
 
-<!-- ── BREADCRUMB ── -->
-<div class="breadcrumb">
-  <a href="index.html">홈</a>
-  <span>›</span>
-  <a href="index.html#recipes">레시피</a>
-  <span>›</span>
-  <span id="breadcrumb-name">-</span>
-</div>
+<main id="recipePage">
+  <div class="breadcrumb">
+    <a href="index.html">홈</a>
+    <span>›</span>
+    <a href="index.html#recipes">레시피</a>
+    <span>›</span>
+    <span id="breadcrumb-name">-</span>
+  </div>
 
-<!-- ── MAIN CONTENT ── -->
-<div class="container">
-
-  <!-- LEFT: 레시피 본문 -->
-  <main>
+  <div class="recipe-layout">
+    <div class="recipe-body">
     <a class="btn-back" href="index.html">← 레시피 목록으로</a>
 
     <!-- HERO CARD -->
@@ -149,10 +147,9 @@
       </h2>
       <div class="tips-wrap" id="tips-wrap"></div>
     </div>
-  </main>
+    </div>
 
-  <!-- RIGHT: SIDEBAR -->
-  <aside class="sidebar">
+    <aside class="sidebar">
 
     <!-- 요약 카드 -->
     <div class="summary-card">
@@ -175,20 +172,11 @@
       <ul class="related-list" id="related-list"></ul>
     </div>
 
-  </aside>
-</div>
+    </aside>
+  </div>
+</main>
 
-<!-- ── FOOTER ── -->
-<footer style="
-  background: #1A1A1A;
-  color: #999;
-  text-align: center;
-  padding: 1.5rem 2rem;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.8;
-  margin-top: 2rem;
-">
+<footer class="recipe-footer">
   <p>📋 본 페이지의 레시피는 <a href="https://www.10000recipe.com" target="_blank" style="color: #FF9F45; text-decoration: none;">만개의 레시피 (10000recipe.com)</a> 를 참고하여 자취생 맞춤으로 재구성하였습니다.</p>
   <p style="margin-top: 4px;">© 2026 오늘 뭐 먹지? — WEB CLIENT COMPUTING 5조</p>
 </footer>
@@ -312,6 +300,7 @@
 
   renderPage();
 </script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

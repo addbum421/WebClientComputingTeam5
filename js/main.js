@@ -31,13 +31,22 @@ gameCardIds.forEach((id) => {
   card.addEventListener("click", goToGamePage);
 });
 
+const TEAM_PAGE = "team.html";
+const isGamePage = Boolean(document.getElementById("tournament-game"));
 const nav = document.getElementById("nav");
-if (nav) {
-  Array.from(nav.children)
-    .slice(0, 3)
-    .forEach((item) => {
-      item.addEventListener("click", goToGamePage);
+
+if (nav && !isGamePage) {
+  const navItems = Array.from(nav.children);
+
+  navItems.slice(0, 3).forEach((item) => {
+    item.addEventListener("click", goToGamePage);
+  });
+
+  if (navItems[3]) {
+    navItems[3].addEventListener("click", () => {
+      window.location.href = TEAM_PAGE;
     });
+  }
 }
 
 const FORM_PAGE = "form.html";
