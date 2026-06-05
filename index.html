@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div id="header">
+        <div id="title">오늘 뭐 먹지?</div>
+        <div id="nav">
+          <div>룰렛 게임</div>
+          <div>토너먼트 게임</div>
+          <div>음식 맞추기 게임</div>
+          <div>팀 소개</div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="gameSelector">
+        <div id="foodGame">
+          <div id="foodGamePicture"></div>
+          <div>🍽️ 음식 맞추기 게임</div>
+        </div>
+        <div id="rouletteGame">
+          <div id="rouletteGamePicture"></div>
+          <div>🎰 룰렛 게임</div>
+        </div>
+        <div id="tournamentGame">
+          <div id="tournamentGamePicture"></div>
+          <div>🏆 토너먼트 게임</div>
+        </div>
+      </div>
+      <div id="representativeMenu">
+        <div>📋 메뉴 추천</div>
+        <div id="menuList">
+          <div id="firstMenu">
+            <div id="firstMenuPicture"></div>
+            <div id="firstMenuText">🍚 김치볶음밥</div>
+          </div>
+          <div id="secondMenu">
+            <div id="secondMenuPicture"></div>
+            <div id="secondMenuText">🍲 김치찌개</div>
+          </div>
+          <div id="thirdMenu">
+            <div id="thirdMenuPicture"></div>
+            <div id="thirdMenuText">🍗 닭볶음탕</div>
+          </div>
+          <div id="fourthMenu">
+            <div id="fourthMenuPicture"></div>
+            <div id="fourthMenuText">🥘 된장찌개</div>
+          </div>
+          <div id="fifthMenu">
+            <div id="fifthMenuPicture"></div>
+            <div id="fifthMenuText">🌶️ 떡볶이</div>
+          </div>
+          <div id="sixthMenu">
+            <div id="sixthMenuPicture"></div>
+            <div id="sixthMenuText">🥣 미역국</div>
+          </div>
+          <div id="seventhMenu">
+            <div id="seventhMenuPicture"></div>
+            <div id="seventhMenuText">🫕 샤브샤브</div>
+          </div>
+          <div id="eighthMenu">
+            <div id="eighthMenuPicture"></div>
+            <div id="eighthMenuText">🍝 알리오올리오 파스타</div>
+          </div>
+        </div>
+      </div>
+      <div id="fortuneCookie">
+        <div id="cookiePicture"></div>
+        <div id="cookieContent">
+          <p id="cookieLabel">✨ 오늘의 운세</p>
+          <p id="cookieText">🥠 포춘 쿠키 뽑기</p>
+          <p id="cookieDesc">🍀 쿠키를 열고 오늘의 메시지를 확인해 보세요</p>
+        </div>
+        <span id="cookieArrow" aria-hidden="true"></span>
+      </div>
+    </main>
+    <script src="js/main.js"></script>
+  </body>
+</html>

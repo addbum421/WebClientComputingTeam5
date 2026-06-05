@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 72" role="img" aria-label="오늘 뭐 먹지? 맛있는 레시피 추천">
+  <defs>
+    <style>
+      .logo-title {
+        font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        font-size: 36px;
+        font-weight: 900;
+        fill: #ffffff;
+        letter-spacing: -0.04em;
+      }
+      .logo-title-accent {
+        fill: #ffd24d;
+      }
+      .logo-sub {
+        font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        fill: #ffffff;
+        letter-spacing: -0.02em;
+      }
+    </style>
+  </defs>
+
+  <text class="logo-title" x="0" y="34" dominant-baseline="alphabetic">오늘 <tspan class="logo-title-accent">뭐</tspan> 먹지?</text>
+
+  <g transform="translate(0, 48)">
+    <circle cx="2.5" cy="6" r="2.5" fill="#ffd24d" />
+    <text class="logo-sub" x="10" y="9" dominant-baseline="middle">맛있는 레시피 추천</text>
+    <circle cx="156" cy="6" r="2.5" fill="#ffd24d" />
+  </g>
+</svg>

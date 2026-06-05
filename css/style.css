@@ -1,0 +1,494 @@
+:root {
+  /* =========================================================
+     브랜드 컬러 — 사이트 메인 오렌지 톤 (헤더·카드·hover)
+     ========================================================= */
+  --color-primary: #e8590c; /* 기본 강조색 */
+  --color-primary-dark: #d9480f; /* 헤더 그라데이션 끝색 */
+  --color-primary-hover: #f76707; /* hover 시 이미지 배경 */
+  --color-primary-soft: #fff4e6; /* 카드 hover 배경 */
+  --color-primary-muted: #ffc9a8; /* 카드 hover 테두리 */
+
+  /* =========================================================
+     중립 컬러 — 페이지 배경·본문·카드·테두리
+     ========================================================= */
+  --color-bg: #faf8f5; /* body 배경 */
+  --color-surface: #ffffff; /* 카드·박스 배경 */
+  --color-text: #343a40; /* 기본 글자색 */
+  --color-text-muted: #868e96; /* 보조·설명 글자색 */
+  --color-text-on-primary: #ffffff; /* 오렌지 위 흰 글자 */
+  --color-border: #f1f3f5; /* 카드·구분선 테두리 */
+
+  /* =========================================================
+     헤더 네비 글자 — #nav 메뉴 항목 타이포·전환
+     ========================================================= */
+  --nav-font-size: 0.9375rem;
+  --nav-font-weight: 500;
+  --nav-color: var(--color-text-on-primary);
+  --nav-transition:
+    background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  /* =========================================================
+     헤더 타이틀 — #title "오늘 뭐 먹지?" 글자
+     ========================================================= */
+  --title-font-size: 1.25rem;
+  --title-font-weight: 700;
+  --title-letter-spacing: -0.02em;
+
+  /* =========================================================
+     게임 카드 라벨 — 카드 하단 게임 이름 글자
+     ========================================================= */
+  --card-label-size: 1rem;
+  --card-label-weight: 600;
+
+  /* =========================================================
+     공통 레이아웃 — 폰트·헤더 높이·모서리 둥글기
+     ========================================================= */
+  --font-family:
+    "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --header-height: 3.33vw;
+  --radius-sm: 0.42vw; /* 네비 버튼 */
+  --radius-md: 0.63vw; /* 게임 이미지 */
+  --radius-lg: 0.83vw; /* 게임 카드 */
+  --space-main-y: 2.6vw;
+  --space-main-x: 10.42vw;
+  --space-main-gap: 5.21vw;
+  --space-game-card: 19.5vw; /* 약 280px @ 1440px */
+  --space-game-picture-h: 15.5vw; /* 약 220px @ 1420px */
+
+  /* =========================================================
+     헤더 스크롤 효과 — 스크롤 시 반투명·블러 (main.js 연동)
+     ========================================================= */
+  --color-primary-rgb: 232, 89, 12; /* rgba용 R,G,B */
+  --color-primary-dark-rgb: 217, 72, 15;
+  --header-bg-opacity-scrolled: 0.78; /* 스크롤 후 배경 투명도 */
+  --header-blur: 12px; /* 스크롤 후 backdrop blur */
+
+  /* =========================================================
+     그림자·애니메이션 — 헤더·카드 elevation & transition
+     ========================================================= */
+  --shadow-header:
+    0 1px 0 rgba(0, 0, 0, 0.06), 0 4px 12px rgba(232, 89, 12, 0.08);
+  --shadow-card: 0 2px 8px rgba(52, 58, 64, 0.06);
+  --shadow-card-hover: 0 12px 28px rgba(232, 89, 12, 0.18);
+  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  padding: 2.5vw var(--space-main-x);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-text-on-primary);
+  box-shadow: var(--shadow-header);
+  transition:
+    background var(--transition-base),
+    box-shadow var(--transition-base),
+    backdrop-filter var(--transition-base);
+}
+
+#header.is-scrolled {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-primary-rgb), var(--header-bg-opacity-scrolled)) 0%,
+    rgba(var(--color-primary-dark-rgb), var(--header-bg-opacity-scrolled)) 100%
+  );
+  backdrop-filter: blur(var(--header-blur));
+  -webkit-backdrop-filter: blur(var(--header-blur));
+  box-shadow: 0 0.21vw 0.83vw rgba(0, 0, 0, 0.08);
+}
+
+#title {
+  flex-shrink: 0;
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  letter-spacing: var(--title-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity var(--transition-base);
+}
+
+#title:hover {
+  opacity: 0.9;
+}
+
+#nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.42vw;
+  align-items: center;
+  flex: 1;
+}
+
+#nav div {
+  padding: 0.42vw 0.73vw;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight);
+  color: var(--nav-color);
+  letter-spacing: -0.01em;
+  transition: var(--nav-transition);
+}
+
+#nav div:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-0.05vw);
+}
+
+#nav div:active {
+  transform: translateY(0);
+}
+/* header end */
+
+/* main */
+main {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-main-y) var(--space-main-x);
+  gap: var(--space-main-gap);
+}
+
+/* game */
+#gameSelector {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: stretch;
+}
+
+#gameSelector > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.73vw;
+  width: var(--space-game-card);
+  padding: 0.83vw;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  color: var(--color-text);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+#gameSelector > div > div:last-child {
+  font-size: var(--card-label-size);
+  font-weight: var(--card-label-weight);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+#gameSelector > div:hover,
+#gameSelector > div:has(:hover) {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary-muted);
+  transform: translateY(-0.21vw);
+  box-shadow: var(--shadow-card-hover);
+}
+
+#gameSelector > div:hover [id$="Picture"],
+#gameSelector > div:has(:hover) [id$="Picture"] {
+  background-color: var(--color-primary-hover);
+}
+
+#foodGame,
+#rouletteGame,
+#tournamentGame {
+  position: relative;
+}
+
+#foodGamePicture,
+#rouletteGamePicture,
+#tournamentGamePicture {
+  width: 100%;
+  height: var(--space-game-picture-h);
+  border-radius: var(--radius-md);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid var(--color-primary);
+  transition: background-color var(--transition-base);
+}
+
+#foodGamePicture {
+  background-image: url(../img/foodGame.png);
+}
+
+#rouletteGamePicture {
+  background-image: url(../img/rouletteGame.png);
+}
+
+#tournamentGamePicture {
+  background-image: url(../img/tournamentGame.png);
+}
+
+/* game end */
+
+/* representative menu */
+#representativeMenu {
+  width: 100%;
+  padding: 2.08vw 2.6vw;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 2.08vw;
+}
+
+#representativeMenu > div:first-child {
+  font-size: 1.25rem;
+  font-weight: var(--card-label-weight);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+#menuList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  column-gap: 3.75vw;
+  row-gap: 2.6vw;
+  justify-items: stretch;
+}
+
+#menuList [id$="Menu"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.63vw;
+  padding: 1.04vw 0.63vw;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+#menuList [id$="Menu"]:hover,
+#menuList [id$="Menu"]:has(:hover) {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary-muted);
+  transform: translateY(-0.1vw);
+  box-shadow: var(--shadow-card-hover);
+}
+
+#menuList [id$="Menu"]:hover [id$="MenuPicture"],
+#menuList [id$="Menu"]:has(:hover) [id$="MenuPicture"] {
+  background-color: var(--color-primary-hover);
+}
+
+[id$="MenuPicture"] {
+  width: 6.25vw;
+  height: 6.25vw;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-color var(--transition-base);
+}
+
+[id$="MenuText"] {
+  font-size: 1rem;
+  font-weight: var(--card-label-weight);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --space-main-x: 5vw;
+    --space-game-card: 30vw;
+  }
+
+  #representativeMenu {
+    padding: 3.5vw 4vw;
+  }
+
+  #menuList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --space-main-y: 4vw;
+    --space-main-x: 4vw;
+    --space-main-gap: 8vw;
+  }
+
+  #representativeMenu {
+    padding: 5vw 4vw;
+  }
+}
+
+@media (max-width: 520px) {
+  #menuList {
+    grid-template-columns: 1fr;
+  }
+}
+/* representative menu end */
+
+/* fortune cookie */
+#fortuneCookie {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  width: 100%;
+  padding: 1.6vw 2vw;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-soft);
+  border: 1px solid var(--color-primary-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+#fortuneCookie:hover,
+#fortuneCookie:has(:hover) {
+  background-color: #fff9f0;
+  border-color: var(--color-primary);
+  transform: translateY(-0.1vw);
+  box-shadow: var(--shadow-card-hover);
+}
+
+#fortuneCookie:hover #cookieArrow,
+#fortuneCookie:has(:hover) #cookieArrow {
+  background-color: var(--color-primary-dark);
+  transform: translateX(0.2vw);
+}
+
+#cookiePicture {
+  flex-shrink: 0;
+  width: 6vw;
+  height: 6vw;
+  min-width: 72px;
+  min-height: 72px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-surface);
+  background-image: url(../img/fortuneCookie.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: var(--shadow-card);
+}
+
+#cookieContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4vw;
+  min-width: 0;
+}
+
+#cookieLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+}
+
+#cookieText {
+  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-weight: var(--title-font-weight);
+  letter-spacing: var(--title-letter-spacing);
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+#cookieDesc {
+  font-size: clamp(0.8125rem, 0.95vw, 0.9375rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+#cookieArrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8vw;
+  height: 2.8vw;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  font-size: 1.25rem;
+  line-height: 1;
+  box-shadow: 0 0.25vw 0.8vw rgba(232, 89, 12, 0.35);
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-base);
+}
+
+#cookieArrow::after {
+  content: "→";
+}
+
+@media (max-width: 600px) {
+  #fortuneCookie {
+    flex-wrap: wrap;
+    row-gap: 2.5vw;
+    padding: 4vw;
+  }
+
+  #cookieArrow {
+    margin-left: auto;
+  }
+}
+/* fortune cookie end */
