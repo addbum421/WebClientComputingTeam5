@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘 뭐 먹지? - 레시피</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-icon">🍚</span>
+      오늘 뭐 먹지?
+    </a>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="game.html">게임</a>
+      <a href="form.html">추천받기</a>
+      <a href="recipe.html">레시피</a>
+      <a href="team.html">팀 소개</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<div class="breadcrumb">
+  <a href="index.html">홈</a>
+  <span>›</span>
+  <a href="index.html#recipes">레시피</a>
+  <span>›</span>
+  <span id="breadcrumb-name">-</span>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div class="container">
+
+  <!-- LEFT: 레시피 본문 -->
+  <main>
+    <a class="btn-back" href="index.html">← 레시피 목록으로</a>
+
+    <!-- HERO CARD -->
+    <div class="recipe-hero">
+      <div class="hero-image-placeholder" id="hero-placeholder">
+        <span id="hero-emoji">🍳</span>
+        <p>음식 사진 영역</p>
+      </div>
+      <img class="hero-image" id="hero-img" src="" alt="" style="display:none;">
+
+      <div class="hero-info">
+        <span class="recipe-category" id="recipe-category">-</span>
+        <h1 class="recipe-title" id="recipe-title">-</h1>
+        <p class="recipe-desc" id="recipe-desc">-</p>
+
+        <div class="meta-row">
+          <div class="meta-chip">
+            <span class="icon">⏱️</span> 조리시간 <strong id="meta-time">-</strong>
+          </div>
+          <div class="meta-chip">
+            <span class="icon">🍽️</span>
+            <strong id="serving-display">1</strong>인분
+          </div>
+        </div>
+
+        <div class="difficulty-row">
+          <span class="stars" id="meta-difficulty">★☆☆</span>
+          <span class="diff-label" id="meta-diff-label">난이도: -</span>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-action" onclick="window.print()">🖨️ 인쇄하기</button>
+          <button class="btn-action" onclick="shareRecipe()">🔗 공유하기</button>
+          <button class="btn-action">♡ 저장하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="section-card">
+      <h2 class="section-title">
+        <span class="s-icon">🥕</span>
+        재료 목록
+      </h2>
+      <div class="servings-control">
+        <span class="servings-label">인분 조절</span>
+        <button class="servings-btn" onclick="changeServing(-1)">−</button>
+        <span class="servings-num" id="serving-num">1인분</span>
+        <button class="servings-btn" onclick="changeServing(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </div>
+
+    <!-- MEASUREMENT TABLE -->
+    <div class="section-card">
+      <h2 class="section-title">
+        <span class="s-icon">📏</span>
+        계량 단위 기준표
+      </h2>
+      <table class="measure-table">
+        <thead>
+          <tr>
+            <th>단위</th>
+            <th>ml / g 환산</th>
+            <th>실생활 기준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="measure-unit-highlight">1 큰술</span></td>
+            <td>약 15 ml</td>
+            <td>밥숟가락 수북이 1개</td>
+          </tr>
+          <tr>
+            <td><span class="measure-unit-highlight">1 작은술</span></td>
+            <td>약 5 ml</td>
+            <td>밥숟가락 평평하게 1/3</td>
+          </tr>
+          <tr>
+            <td><span class="measure-unit-highlight">1 공기</span></td>
+            <td>약 210 g</td>
+            <td>밥그릇 1개 분량</td>
+          </tr>
+          <tr>
+            <td><span class="measure-unit-highlight">약간</span></td>
+            <td>1 g 미만</td>
+            <td>손가락 두 개로 집은 양</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- STEPS -->
+    <div class="section-card">
+      <h2 class="section-title">
+        <span class="s-icon">📋</span>
+        조리 순서
+      </h2>
+      <ol class="steps-list" id="steps-list"></ol>
+    </div>
+
+    <!-- TIP -->
+    <div class="section-card">
+      <h2 class="section-title">
+        <span class="s-icon">💡</span>
+        요리 팁
+      </h2>
+      <div class="tips-wrap" id="tips-wrap"></div>
+    </div>
+  </main>
+
+  <!-- RIGHT: SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- 요약 카드 -->
+    <div class="summary-card">
+      <p class="summary-card-title">📊 레시피 요약</p>
+      <div class="summary-stats">
+        <div class="stat-box">
+          <span class="stat-val" id="sum-time">-</span>
+          <span class="stat-lbl">조리 시간</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val" id="sum-diff">-</span>
+          <span class="stat-lbl">난이도</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관련 레시피 -->
+    <div class="related-card">
+      <h3 class="related-title">🍴 비슷한 레시피</h3>
+      <ul class="related-list" id="related-list"></ul>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer style="
+  background: #1A1A1A;
+  color: #999;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  margin-top: 2rem;
+">
+  <p>📋 본 페이지의 레시피는 <a href="https://www.10000recipe.com" target="_blank" style="color: #FF9F45; text-decoration: none;">만개의 레시피 (10000recipe.com)</a> 를 참고하여 자취생 맞춤으로 재구성하였습니다.</p>
+  <p style="margin-top: 4px;">© 2026 오늘 뭐 먹지? — WEB CLIENT COMPUTING 5조</p>
+</footer>
+
+<script src="js/foodData.js"></script>
+
+<script>
+  var params = new URLSearchParams(window.location.search);
+  var foodKey = params.get('food') || 'KIMCHI_RICE';
+  var food = foodList[foodKey];
+
+  if (!food) {
+    foodKey = 'KIMCHI_RICE';
+    food = foodList[foodKey];
+  }
+
+  function renderPage() {
+    document.title = '오늘 뭐 먹지? - ' + food.name;
+    document.getElementById('breadcrumb-name').textContent = food.name;
+    document.getElementById('recipe-title').textContent = food.name;
+    document.getElementById('recipe-category').textContent = food.category;
+    document.getElementById('recipe-desc').textContent = food.description;
+
+    document.getElementById('meta-time').textContent = food.time;
+    document.getElementById('meta-difficulty').textContent = food.difficulty;
+    document.getElementById('meta-diff-label').textContent = '난이도: ' + food.diffLabel;
+
+    document.getElementById('sum-time').textContent = food.time;
+    document.getElementById('sum-diff').textContent = food.difficulty;
+
+    var img = document.getElementById('hero-img');
+    var placeholder = document.getElementById('hero-placeholder');
+    img.src = food.src;
+    img.alt = food.name;
+    img.onerror = function() {
+      img.style.display = 'none';
+      placeholder.style.display = 'flex';
+      document.getElementById('hero-emoji').textContent = food.emoji;
+    };
+    img.onload = function() {
+      img.style.display = 'block';
+      placeholder.style.display = 'none';
+    };
+
+    var ingList = document.getElementById('ingredient-list');
+    ingList.innerHTML = '';
+    food.ingredients.forEach(function(ing) {
+      var li = document.createElement('li');
+      li.className = 'ingredient-item';
+      li.innerHTML =
+        '<span class="ing-name"><span class="ing-dot"></span> ' + ing.name + '</span>' +
+        '<span><span class="ing-amount" data-base="' + ing.amount + '">' + ing.amount + '</span>' +
+        '<span class="ing-unit"> ' + ing.unit + '</span></span>';
+      ingList.appendChild(li);
+    });
+
+    var stepsList = document.getElementById('steps-list');
+    stepsList.innerHTML = '';
+    food.steps.forEach(function(step, i) {
+      var li = document.createElement('li');
+      li.className = 'step-item';
+      var timeBadge = step.time ? '<span class="step-time-badge">⏱️ ' + step.time + '</span>' : '';
+      li.innerHTML =
+        '<span class="step-num">' + (i + 1) + '</span>' +
+        '<div class="step-content">' +
+          '<p class="step-text"><strong>' + step.title + ':</strong> ' + step.text + '</p>' +
+          timeBadge +
+        '</div>';
+      stepsList.appendChild(li);
+    });
+
+    var tipsWrap = document.getElementById('tips-wrap');
+    tipsWrap.innerHTML = '';
+    food.tips.forEach(function(tip) {
+      var div = document.createElement('div');
+      div.className = 'tip-box';
+      div.innerHTML =
+        '<span class="tip-icon">' + tip.icon + '</span>' +
+        '<div class="tip-content"><strong>' + tip.title + '</strong>' + tip.text + '</div>';
+      tipsWrap.appendChild(div);
+    });
+
+    var relatedList = document.getElementById('related-list');
+    relatedList.innerHTML = '';
+    food.related.forEach(function(key) {
+      var rel = foodList[key];
+      if (!rel) return;
+      var li = document.createElement('li');
+      li.className = 'related-item';
+      li.onclick = function() { window.location.href = 'recipe.html?food=' + key; };
+      li.innerHTML =
+        '<span class="related-emoji">' + rel.emoji + '</span>' +
+        '<div class="related-info">' +
+          '<span class="related-name">' + rel.name + '</span>' +
+          '<span class="related-meta">⏱️ ' + rel.time + ' · ' + rel.difficulty + '</span>' +
+        '</div>';
+      relatedList.appendChild(li);
+    });
+  }
+
+  var servings = 1;
+
+  function changeServing(delta) {
+    servings = Math.max(1, Math.min(10, servings + delta));
+    document.getElementById('serving-num').textContent = servings + '인분';
+    document.getElementById('serving-display').textContent = servings;
+    document.querySelectorAll('.ing-amount').forEach(function(el) {
+      var base = parseFloat(el.dataset.base);
+      var val = base * servings;
+      el.textContent = Number.isInteger(val) ? val : parseFloat(val.toFixed(1));
+    });
+  }
+
+  function shareRecipe() {
+    if (navigator.share) {
+      navigator.share({ title: food.name + ' 레시피', url: location.href });
+    } else {
+      alert('링크가 복사됐어요!');
+    }
+  }
+
+  renderPage();
+</script>
+
+</body>
+</html>
