@@ -3,6 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 뭐 먹지? - 음식 토너먼트</title>
+    <link rel="stylesheet" href="gametostyle.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+      <div class="header-bar">
+        <div class="logo">오늘 뭐 먹지?</div>
+        <div class="game-tag">
+          <div>룰렛 게임</div>
+          <div>토너먼트 게임</div>
+          <div>음식 맞추기 게임</div>
+          <div>팀 소개</div>
+        </div>
+      </div>
+    </header>
+
+        <main class="game-content">
+            <h2 class="title" id="tournament-title">음식 토너먼트</h2>
+            <p class="round-info" id="round-info">1/4</p>
+
+            <div class="match-container">
+                <div class="food-card" id="left-card">
+                    <div class="image-placeholder" id="left-img">
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
+                    </div>
+                    <div class="food-name" id="left-name">음식 1</div>
+                </div>
+
+                <div class="vs-text">VS</div>
+
+                <div class="food-card" id="right-card">
+                    <div class="image-placeholder" id="right-img">
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
+                    </div>
+                    <div class="food-name" id="right-name">음식 2</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="winner-modal">
+        <div class="modal-content">
+            <h2 class="modal-title">축하합니다! 🏆</h2>
+            <p class="modal-sub">오늘의 우승 메뉴</p>
+            
+            <div class="winner-display">
+                <div class="image-placeholder" id="winner-img">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="0" x2="100" y2="100" /><line x1="100" y1="0" x2="0" y2="100" /></svg>
+                </div>
+                <div class="food-name" id="winner-name">우승 음식</div>
+            </div>
+
+            <a href="#" class="shortcut-btn" id="shortcut-link">레시피 가기</a>
+        </div>
+    </div>
+
+    <script src="gametoscript.js"></script>
+
     <link rel="stylesheet" href="css/game-style.css">
     <title>게임</title>
 </head>
