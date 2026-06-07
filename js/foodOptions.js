@@ -29,6 +29,7 @@ const toppingIngredients = {
   양파: { name: "양파", amount: 0.25, unit: "개" },
   당근: { name: "당근", amount: 0.25, unit: "개" },
   김가루: { name: "김가루", amount: 1, unit: "약간" },
+  계란: { name: "계란", amount: 1, unit: "개" },
   // 김치찌개
   두부: { name: "두부", amount: 0.25, unit: "모" },
   차돌박이: { name: "차돌박이", amount: 50, unit: "g" },

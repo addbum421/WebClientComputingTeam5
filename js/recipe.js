@@ -29,14 +29,20 @@ var fieldAliasMap = {
 var valueAliasMap = {
   낮게: "싱겁게",
   높게: "짭짤하게",
+
+  초보맛: "보통맛",
+  덜매운맛: "아주 매운맛",
+
   "얼큰 육수": "얼큰한 육수",
   "반반 육수": "얼큰한 육수",
+
   "반숙 계란": "반숙",
   "완숙 계란": "완숙",
+
   페퍼론치노: "페페론치노",
   빼기: "안 맵게",
   조금: "보통",
-  넉넉하게: "칼칼하게",
+
   고기: "돼지고기",
   "둘 다": "둘 다",
 };
@@ -113,6 +119,9 @@ if (menuKey) {
         return item && item !== "없음";
       });
   }
+}
+if (foodKey === "KIMCHI_RICE" && !formParams.eggStyle) {
+  formParams.eggStyle = "없음";
 }
 
 function getCurrentMenuToppingIngredientNames() {
