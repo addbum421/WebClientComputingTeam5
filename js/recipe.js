@@ -533,6 +533,7 @@ function renderPage() {
 
   if (food.optionSteps) {
     var removedIndexes = [];
+    var insertSteps = [];
 
     Object.keys(food.optionSteps).forEach(function (fieldId) {
       var fieldOptions = food.optionSteps[fieldId];
@@ -546,11 +547,14 @@ function renderPage() {
           if (!mod) return;
 
           if (mod.afterStep !== undefined) {
-            steps.splice(mod.afterStep + 1, 0, {
-              title: "➕ 토핑 (" + t + ")",
-              text: mod.text,
-              time: mod.time || null,
-              extra: true,
+            insertSteps.push({
+              afterStep: mod.afterStep,
+              step: {
+                title: "➕ 토핑 (" + t + ")",
+                text: mod.text,
+                time: mod.time || null,
+                extra: true,
+              },
             });
           }
         });
@@ -572,17 +576,33 @@ function renderPage() {
           }
         }
       } else if (mod.afterStep !== undefined) {
-        steps.splice(mod.afterStep + 1, 0, {
-          title: "💡 옵션 가이드",
-          text: mod.text,
-          time: mod.time || null,
-          extra: true,
+        insertSteps.push({
+          afterStep: mod.afterStep,
+          step: {
+            title: "💡 옵션 가이드",
+            text: mod.text,
+            time: mod.time || null,
+            extra: true,
+          },
         });
       }
     });
 
     steps = steps.filter(function (_, idx) {
       return removedIndexes.indexOf(idx) === -1;
+    });
+
+    insertSteps.sort(function (a, b) {
+      return b.afterStep - a.afterStep;
+    });
+
+    insertSteps.forEach(function (item) {
+      var removedBeforeCount = removedIndexes.filter(function (idx) {
+        return idx <= item.afterStep;
+      }).length;
+
+      var insertIndex = item.afterStep - removedBeforeCount + 1;
+      steps.splice(insertIndex, 0, item.step);
     });
   }
 
