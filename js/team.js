@@ -1,20 +1,34 @@
 const recommend = [
-  { worker: "eunseo", reco_src: "", reco_url: "", reco_comment: "" },
+  { 
+    worker: "eunseo", 
+    reco_src: "./assets/image/menu/김치볶음밥.png", 
+    reco_url: "form.html?menu=kimchiFriedRice&source=recommend", 
+    reco_comment: "좋아하는 요리: 김치볶음밥" },
   {
     worker: "juho",
     reco_src: "./assets/image/menu/알리오올리오.png",
-    reco_url: "",
+    reco_url: "form.html?menu=aglioOlio&source=recommend",
     reco_comment: "좋아하는 요리: 알리오올리오 파스타",
   },
   {
     worker: "bumik",
     reco_src: "./assets/image/menu/김치찌개.png",
     reco_url:
-      "recipe.html?food=KIMCHI_JJIGAE&menu=kimchiStew&source=recommend&spicyLevel=보통맛&salinity=보통&mainProtein=참치",
+      "form.html?menu=kimchiStew&source=recommend",
     reco_comment: "좋아하는 요리: 김치찌개",
   },
-  { worker: "gayoung", reco_src: "", reco_url: "", reco_comment: "" },
-  { worker: "eunbyul", reco_src: "", reco_url: "", reco_comment: "" },
+  { 
+    worker: "gayoung", 
+    reco_src: "./assets/image/menu/떡볶이.png", 
+    reco_url: "form.html?menu=tteokbokki&source=recommend", 
+    reco_comment: "좋아하는 요리: 떡볶이" 
+  },
+  { 
+    worker: "eunbyul", 
+    reco_src: "./assets/image/menu/샤브샤브.png", 
+    reco_url: "form.html?menu=shabuShabu&source=recommend", 
+    reco_comment: "좋아하는 요리: 샤브샤브" 
+  },
 ];
 
 recommend.forEach(({ worker, reco_src, reco_url, reco_comment }) => {
@@ -47,7 +61,8 @@ recommend.forEach(({ worker, reco_src, reco_url, reco_comment }) => {
     card.classList.add("is-clickable");
     card.setAttribute("role", "button");
     card.setAttribute("tabindex", "0");
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a")) return;
       window.location.href = reco_url;
     });
     card.addEventListener("keydown", (event) => {
