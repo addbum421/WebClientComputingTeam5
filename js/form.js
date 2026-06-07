@@ -326,13 +326,13 @@ if (!form) {
         : data.get(field.id),
     }));
 
-    if (menuKey === "kimchiFriedRice" && isEggToppingSelected()) {
-      options.push({
-        id: "eggStyle",
-        label: "계란",
-        value: data.get("eggStyle"),
-      });
-    }
+  if (menuKey === "kimchiFriedRice") {
+    options.push({
+      id: "eggStyle",
+      label: "계란",
+      value: isEggToppingSelected() ? data.get("eggStyle") : "없음",
+    });
+  }
 
     return options;
   }
