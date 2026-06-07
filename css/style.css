@@ -323,7 +323,7 @@ body > main > * {
 #tournamentGamePicture {
   background-image: url(../assets/image/game/tournamentImage.png);
   background-position: 56% calc(50% + 35px);
-  background-size: 108% auto;
+  background-size: 90% auto;
 }
 
 /* game end */
