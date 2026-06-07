@@ -200,8 +200,9 @@ body > main > * {
 
 /* game */
 #gameSelector {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 20px);
   width: 100%;
   align-items: stretch;
 }
@@ -212,7 +213,8 @@ body > main > * {
   align-items: stretch;
   justify-content: flex-start;
   gap: 0.73vw;
-  width: var(--space-game-card);
+  width: 100%;
+  min-width: 0;
   padding: 0.83vw;
   border-radius: calc(var(--radius-lg) + 0.15vw);
   background:
@@ -444,17 +446,23 @@ body > main > * {
 @media (max-width: 900px) {
   :root {
     --space-main-x: 5vw;
-    --space-game-card: 30vw;
+    --space-game-picture-h: clamp(72px, 20vw, 120px);
   }
 
   #gameSelector {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: clamp(16px, 3vw, 24px);
+    gap: clamp(6px, 1.5vw, 12px);
   }
 
   #gameSelector > div {
-    width: min(var(--space-game-card), 42vw);
+    padding: clamp(6px, 1.2vw, 10px);
+    gap: clamp(4px, 1vw, 8px);
+  }
+
+  #gameSelector > div > div:last-child {
+    padding: clamp(4px, 1vw, 8px) clamp(2px, 0.5vw, 6px);
+    font-size: clamp(0.6875rem, 2.4vw, 0.9375rem);
+    line-height: 1.3;
+    white-space: normal;
   }
 
   #menuList {
