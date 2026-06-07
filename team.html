@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>팀 소개</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/game-style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>팀 소개</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/game-style.css" />
+  </head>
+  <body>
     <header>
       <div id="header">
         <div id="title">오늘 뭐 먹지?</div>
@@ -26,47 +26,141 @@
       </div>
     </header>
 
-    <main>
-    <div class="team-content-title">팀 소개</div>
-    <section class="team-content">
-        <div class="team-introduce">저희 “오늘 뭐먹지?“는 매일 반복되는 식사 고민을 쉽고 재미있게 해결하기 위해 만들어진 맞춤형 레시피 추천 웹 서비스입니다.<br><br>사용자는 게임형 선택지와 랜덤 메뉴 추천 기능을 통해 자신의 취향과 상황에 맞는 음식을 찾을 수 있으며, 추천된 메뉴에 대한 레시피와 조리 방법까지 함께 제공받을 수 있습니다.<br><br>저희 팀은 단순히 메뉴를 추천하는 것을 넘어, 사용자가 선택 과정 자체를 즐길 수 있는 경험을 제공하고자 하였습니다. 바쁜 일상 속에서 누구나 한 번쯤 고민하는 “오늘 뭐 먹지?“라는 질문에 쉽고 즐거운 해결책을 제시하는 것이 저희 프로젝트의 목표입니다</div>
-    </section>
+    <main class="team-page">
+      <section class="team-hero">
+        <h1 class="team-content-title">팀 소개</h1>
+        <div class="team-content">
+          <p class="team-introduce">
+            저희 &ldquo;오늘 뭐 먹지?&rdquo;는 매일 반복되는 식사 고민을 쉽고
+            재미있게 해결하기 위해 만들어진 맞춤형 레시피 추천 웹 서비스입니다.
+          </p>
+          <p class="team-introduce">
+            게임형 선택지와 랜덤 메뉴 추천 기능을 통해 자신의 취향과 상황에 맞는
+            음식을 찾을 수 있으며, 추천된 메뉴의 레시피와 조리 방법까지 함께
+            제공합니다.
+          </p>
+          <p class="team-introduce">
+            단순히 메뉴를 추천하는 것을 넘어, 선택 과정 자체를 즐길 수 있는
+            경험을 제공하는 것이 저희 프로젝트의 목표입니다.
+          </p>
+        </div>
+      </section>
 
-    <div class="team-content-title">팀원</div>
-    <div class="team-worker-container">
-            <div class="team-worker-card" id="eunseo">
-                <img class="team-worker-photo" src="./assets/image/team/empty_personal_photo.png" alt="팀원 사진">
-                <div class="team-worker-name">박은서</div>
-                <div class="team-worker-introduce">소개문 PlaceHolder PlaceHolder PlaceHolder PlaceHolderPlaceHolder</div>
-                <div class="team-worker-link"><a href="">깃허브 링크</a></div>
+      <section class="team-members">
+        <h2 class="team-content-title">팀원</h2>
+        <p class="team-members-desc">
+          카드에 마우스를 올리면 좋아하는 음식을 확인할 수 있습니다.
+        </p>
+        <div class="team-worker-container">
+          <article class="team-worker-card" id="eunseo">
+            <div class="team-worker-photo-wrap">
+              <img
+                class="team-worker-photo"
+                src="./assets/image/team/empty_personal_photo.png"
+                alt="박은서"
+              />
             </div>
-            <div class="team-worker-card" id="juho">
-                <img class="team-worker-photo" src="./assets/image/team/juho.jpeg" alt="팀원 사진">
-                <div class="team-worker-name">박주호</div>
-                <div class="team-worker-introduce">20211882 | <br>담당:   <br>저의 취미는 음악입니다!</div>
-                <div class="team-worker-link"><a href="">깃허브 링크</a></div>
+            <div class="team-worker-name">박은서</div>
+            <div class="team-worker-meta">소프트웨어학부</div>
+            <div class="team-worker-introduce">
+              <p class="team-worker-bio">
+                각자 하신거 다 작성해주세요 ! 피그마 디자인, 발표 준비, PPT 제작
+                등등 다!
+              </p>
             </div>
-            <div class="team-worker-card" id="bumik">
-                <img class="team-worker-photo" src="./assets/image/team/bumik.jpeg" alt="팀원 사진">
-                <div class="team-worker-name">유범익</div>
-                <div class="team-worker-introduce">20213028 | 소프트웨어학부<br> 담당: 맞추기 게임, 팀페이지 <br> 게임을 자주 즐겨합니다.</div>
-                <div class="team-worker-link"><a href="">@addbum421</a></div>
+            <div class="team-worker-link">
+              <a href="#">GitHub</a>
             </div>
-            <div class="team-worker-card" id="gayoung">
-                <img class="team-worker-photo" src="./assets/image/team/empty_personal_photo.png" alt="팀원 사진">
-                <div class="team-worker-name">이가영</div>
-                <div class="team-worker-introduce">소개문 PlaceHolder PlaceHolder PlaceHolder PlaceHolderPlaceHolder</div>
-                <div class="team-worker-link"><a href="">깃허브 링크</a></div>
+          </article>
+
+          <article class="team-worker-card" id="juho">
+            <div class="team-worker-photo-wrap">
+              <img
+                class="team-worker-photo"
+                src="./assets/image/team/juho.jpeg"
+                alt="박주호"
+              />
             </div>
-            <div class="team-worker-card" id="eunbyul">
-                <img class="team-worker-photo" src="./assets/image/team/empty_personal_photo.png" alt="팀원 사진">
-                <div class="team-worker-name">하은별</div>
-                <div class="team-worker-introduce">소개문 PlaceHolder PlaceHolder PlaceHolder PlaceHolderPlaceHolder</div>
-                <div class="team-worker-link"><a href="">깃허브 링크</a></div>
+            <div class="team-worker-name">박주호</div>
+            <div class="team-worker-meta">20211882 · 소프트웨어학부</div>
+            <div class="team-worker-introduce">
+              <p class="team-worker-bio">
+                담당: 메인 페이지, 포춘 쿠키 페이지 구현, 룰렛 페이지 구현
+              </p>
             </div>
-    </div>
+            <div class="team-worker-link">
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+
+          <article class="team-worker-card" id="bumik">
+            <div class="team-worker-photo-wrap">
+              <img
+                class="team-worker-photo"
+                src="./assets/image/team/bumik.jpeg"
+                alt="유범익"
+              />
+            </div>
+            <div class="team-worker-name">유범익</div>
+            <div class="team-worker-meta">20213028 · 소프트웨어학부</div>
+            <div class="team-worker-introduce">
+              <p class="team-worker-bio">담당: 맞추기 게임, 팀 페이지</p>
+            </div>
+            <div class="team-worker-link">
+              <a
+                href="https://github.com/addbum421"
+                target="_blank"
+                rel="noopener noreferrer"
+                >@addbum421</a
+              >
+            </div>
+          </article>
+
+          <article class="team-worker-card" id="gayoung">
+            <div class="team-worker-photo-wrap">
+              <img
+                class="team-worker-photo"
+                src="./assets/image/team/empty_personal_photo.png"
+                alt="이가영"
+              />
+            </div>
+            <div class="team-worker-name">이가영</div>
+            <div class="team-worker-meta">소프트웨어학부</div>
+            <div class="team-worker-introduce">
+              <p class="team-worker-bio">
+                각자 하신거 다 작성해주세요 ! 피그마 디자인, 발표 준비, PPT 제작
+                등등 다!
+              </p>
+            </div>
+            <div class="team-worker-link">
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+
+          <article class="team-worker-card" id="eunbyul">
+            <div class="team-worker-photo-wrap">
+              <img
+                class="team-worker-photo"
+                src="./assets/image/team/empty_personal_photo.png"
+                alt="하은별"
+              />
+            </div>
+            <div class="team-worker-name">하은별</div>
+            <div class="team-worker-meta">소프트웨어학부</div>
+            <div class="team-worker-introduce">
+              <p class="team-worker-bio">
+                각자 하신거 다 작성해주세요 ! 피그마 디자인, 발표 준비, PPT 제작
+                등등 다!
+              </p>
+            </div>
+            <div class="team-worker-link">
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
-  <script src="js/main.js"></script>
-  <script src="js/team.js"></script>
-</body>
+    <script src="js/main.js"></script>
+    <script src="js/team.js"></script>
+  </body>
 </html>

@@ -1,54 +1,60 @@
-recommend = [
-    {worker:"eunseo", reco_src : "", reco_url : "", reco_comment : ""},
-    {worker:"juho", reco_src : "./assets/image/menu/알리오올리오.png", reco_url : "", reco_comment : "좋아하는 요리: 파스타"},
-    {worker:"bumik", reco_src : "./assets/image/menu/김치찌개.png", reco_url : "recipe.html?food=KIMCHI_JJIGAE&menu=kimchiStew&source=recommend&spicyLevel=보통맛&salinity=보통&mainProtein=참치", reco_comment : "좋아하는 요리: 김치찌개"},
-    {worker:"gayoung", reco_src : "", reco_url : "", reco_comment : ""},
-    {worker:"eunbyul", reco_src : "", reco_url : "", reco_comment : ""},
-]
+const recommend = [
+  { worker: "eunseo", reco_src: "", reco_url: "", reco_comment: "" },
+  {
+    worker: "juho",
+    reco_src: "./assets/image/menu/알리오올리오.png",
+    reco_url: "",
+    reco_comment: "좋아하는 요리: 알리오올리오 파스타",
+  },
+  {
+    worker: "bumik",
+    reco_src: "./assets/image/menu/김치찌개.png",
+    reco_url:
+      "recipe.html?food=KIMCHI_JJIGAE&menu=kimchiStew&source=recommend&spicyLevel=보통맛&salinity=보통&mainProtein=참치",
+    reco_comment: "좋아하는 요리: 김치찌개",
+  },
+  { worker: "gayoung", reco_src: "", reco_url: "", reco_comment: "" },
+  { worker: "eunbyul", reco_src: "", reco_url: "", reco_comment: "" },
+];
 
-const eunseoCard = {
-    photo : document.querySelector('#eunseo .team-worker-photo'),
-    intro :  document.querySelector('#eunseo .team-worker-introduce'),
-}
+recommend.forEach(({ worker, reco_src, reco_url, reco_comment }) => {
+  const card = document.getElementById(worker);
+  if (!card || !reco_src) return;
 
-const juhoCard = {
-    photo : document.querySelector('#juho .team-worker-photo'),
-    intro :  document.querySelector('#juho .team-worker-introduce'),
-}
+  card.classList.add("has-reco");
 
-const bumikCard = {
-    photo : document.querySelector('#bumik .team-worker-photo'),
-    intro :  document.querySelector('#bumik .team-worker-introduce'),
-}
+  const wrap = card.querySelector(".team-worker-photo-wrap");
+  const overlay = document.createElement("div");
+  overlay.className = "team-worker-reco-overlay";
+  overlay.style.backgroundImage = `url(${reco_src})`;
+  overlay.setAttribute("aria-hidden", "true");
+  wrap.appendChild(overlay);
 
-const gayoungCard = {
-    photo : document.querySelector('#gayoung .team-worker-photo'),
-    intro :  document.querySelector('#gayoung .team-worker-introduce'),
-}
+  const recoText = document.createElement("p");
+  recoText.className = "team-worker-reco-text";
+  recoText.textContent = reco_comment;
+  card.querySelector(".team-worker-introduce").appendChild(recoText);
 
-const eunbyulCard = {
-    photo : document.querySelector('#eunbyul .team-worker-photo'),
-    intro :  document.querySelector('#eunbyul .team-worker-introduce'),
-}
+  card.addEventListener("mouseenter", () => {
+    card.classList.add("is-reco-active");
+  });
 
-const cards = { eunseo: eunseoCard, juho: juhoCard, bumik: bumikCard, gayoung: gayoungCard, eunbyul: eunbyulCard }
+  card.addEventListener("mouseleave", () => {
+    card.classList.remove("is-reco-active");
+  });
 
-recommend.forEach(reco => {
-    const card = cards[reco.worker]
-    const el = document.querySelector(`#${reco.worker}`)
-    const originalSrc = card.photo.src
-    const originalIntro = card.intro.innerHTML
-
-    el.addEventListener('mouseenter', () => {
-        card.photo.src = reco.reco_src
-        card.intro.innerHTML = reco.reco_comment
-    })
-    el.addEventListener('mouseleave', () => {
-        card.photo.src = originalSrc
-        card.intro.innerHTML = originalIntro
-    })
-    el.addEventListener('click', () => {
-        window.location.href = reco.reco_url
-    })
-})
-
+  if (reco_url) {
+    card.classList.add("is-clickable");
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.addEventListener("click", () => {
+      window.location.href = reco_url;
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.href = reco_url;
+      }
+    });
+  }
+});
