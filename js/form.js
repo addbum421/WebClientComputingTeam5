@@ -250,6 +250,21 @@ if (!form) {
       })
       .join("");
 
+    if (menuKey === "kimchiFriedRice") {
+      customFields.insertAdjacentHTML(
+        "beforeend",
+        `
+        <label for="eggStyle" id="eggStyleLabel" class="egg-style-field">계란</label>
+        <select id="eggStyle" name="eggStyle" class="egg-style-field">
+          <option value="">선택하세요</option>
+          <option value="반숙">반숙</option>
+          <option value="완숙">완숙</option>
+        </select>
+      `,
+      );
+      attachEggStyleToggle();
+    }
+
     if (spicyGuide) {
       spicyGuide.classList.remove('visible');
       const spicyFieldDef = menu.fields.find((f) => f.id === 'spicyLevel');
@@ -267,21 +282,71 @@ if (!form) {
     }
   }
 
+  function attachEggStyleToggle() {
+    const eggCheckbox = customFields.querySelector(
+      'input[name="topping"][value="계란"]',
+    );
+    const eggLabel = document.getElementById("eggStyleLabel");
+    const eggSelect = document.getElementById("eggStyle");
+
+    if (!eggCheckbox || !eggLabel || !eggSelect) return;
+
+    const toggleEggStyleField = () => {
+      const isChecked = eggCheckbox.checked;
+
+      eggLabel.style.display = isChecked ? "block" : "none";
+      eggSelect.style.display = isChecked ? "block" : "none";
+      eggSelect.required = isChecked;
+
+      if (!isChecked) {
+        eggSelect.value = "";
+      }
+    };
+
+    eggCheckbox.addEventListener("change", toggleEggStyleField);
+    toggleEggStyleField();
+  }
+
+  function isEggToppingSelected() {
+    return Boolean(
+      customFields.querySelector('input[name="topping"][value="계란"]:checked'),
+    );
+  }
+
   function getSelectedOptions(menuKey) {
     const menu = menuForms[menuKey];
     const data = new FormData(form);
-    const multiCheckboxFields = ['topping', 'spicyTopping', 'herb'];
+    const multiCheckboxFields = ["topping", "spicyTopping", "herb"];
 
-    return menu.fields.map((field) => ({
+    const options = menu.fields.map((field) => ({
       id: field.id,
       label: field.label,
-      value: multiCheckboxFields.includes(field.id) ? data.getAll(field.id) : data.get(field.id),
+      value: multiCheckboxFields.includes(field.id)
+        ? data.getAll(field.id)
+        : data.get(field.id),
     }));
+
+    if (menuKey === "kimchiFriedRice" && isEggToppingSelected()) {
+      options.push({
+        id: "eggStyle",
+        label: "계란",
+        value: data.get("eggStyle"),
+      });
+    }
+
+    return options;
   }
 
   function validate(menuKey) {
     if (!menuForms[menuKey]) {
       return "추천받은 메뉴를 선택해주세요.";
+    }
+
+    if (menuKey === "kimchiFriedRice" && isEggToppingSelected()) {
+      const eggStyle = new FormData(form).get("eggStyle");
+      if (!eggStyle) {
+        return "계란 스타일(반숙/완숙)을 선택해주세요.";
+      }
     }
 
     const hasEmptyOption = getSelectedOptions(menuKey).some((option) => {

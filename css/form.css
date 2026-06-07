@@ -137,8 +137,9 @@
 #formPage .checkbox-field {
   grid-column: 2;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 4px 0;
 }
 
 #formPage .checkbox-group {
@@ -149,32 +150,142 @@
 }
 
 #formPage label.field-label {
+  align-self: start;
+  padding-top: 10px;
   font-weight: 700;
   color: var(--color-text);
 }
 
 #formPage .checkbox-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  color: var(--color-text);
-  min-width: 120px;
+  position: relative;
+  display: inline-flex;
 }
 
 #formPage .checkbox-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-height: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   margin: 0;
-  accent-color: var(--color-primary);
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 #formPage .checkbox-item label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 40px;
+  padding: 8px 16px;
   margin: 0;
-  line-height: 1.2;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%);
+  color: var(--color-text);
+  font-size: 0.9375rem;
   font-weight: 600;
-  font-size: 16px;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+#formPage .checkbox-item label::before {
+  content: "✓";
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  max-width: 0;
+  height: 16px;
+  margin-right: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  color: var(--color-text-on-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+#formPage .checkbox-item:hover label {
+  border-color: var(--color-primary-muted);
+  background: var(--color-primary-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+#formPage .checkbox-item input[type="checkbox"]:checked + label {
+  border-color: var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  color: var(--color-text-on-primary);
+  box-shadow: 0 4px 14px rgba(232, 89, 12, 0.24);
+  transform: translateY(-1px);
+}
+
+#formPage .checkbox-item input[type="checkbox"]:not(:checked) + label::before {
+  display: none;
+  animation: none;
+  width: 0;
+  max-width: 0;
+  margin-right: 0;
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+#formPage .checkbox-item input[type="checkbox"]:checked + label::before {
+  display: inline-flex;
+  animation: chip-check-reveal 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+}
+
+@keyframes chip-check-reveal {
+  from {
+    width: 0;
+    max-width: 0;
+    margin-right: 0;
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    width: 16px;
+    max-width: 16px;
+    margin-right: 6px;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#formPage .checkbox-item input[type="checkbox"]:focus-visible + label {
+  outline: 3px solid rgba(var(--color-primary-rgb), 0.28);
+  outline-offset: 2px;
+}
+
+#formPage .checkbox-item input[type="checkbox"]:disabled + label {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#formPage .egg-style-field {
+  display: none;
 }
 
 #formPage .custom-fields {
@@ -339,8 +450,18 @@
   }
 
   #formPage .range-labels,
-  #formPage .checkbox {
+  #formPage .checkbox,
+  #formPage .checkbox-field {
     grid-column: 1;
+  }
+
+  #formPage label.field-label {
+    padding-top: 0;
+  }
+
+  #formPage .checkbox-item label {
+    white-space: normal;
+    text-align: center;
   }
 
   #formPage .actions {
